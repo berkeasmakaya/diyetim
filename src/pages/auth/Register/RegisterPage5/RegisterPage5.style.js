@@ -8,21 +8,13 @@ export default StyleSheet.create({
     },
     header_container:{
         //backgroundColor:"red",
-        marginTop:30,
-        marginBottom:20,
-        padding:10,
-        justifyContent:"center",
-        alignItems:"center"
-        
+        marginTop:60,
+        marginBottom:30,
     },
-    text_1:{
-        fontSize:20,
+    header:{
         color:"#ffffff",
-        fontWeight:"bold"
-    },
-    text_2:{
-        marginTop:10,
-        color:"#ffffff"
+        fontSize:20,
+        textAlign:"center"
     },
     btn_container:{
         flex:1,

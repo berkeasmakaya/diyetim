@@ -7,7 +7,7 @@ import Button from '../../components/Button';
 function FirstPage({navigation}){
 
     const goToNamePage = () => {
-        navigation.navigate("NamePage")
+        navigation.navigate("RegisterPage1")
     }
 
     return(
