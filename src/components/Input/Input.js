@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { TextInput, View } from "react-native";
 import styles from './Input.style';
 
-const Input = ({autoCapitalize, value,onType,isSecure,placeholder, onBlur}) => {
+const Input = ({autoCapitalize, value,onType,isSecure,placeholder, onBlur, keyboradType, fontSize}) => {
 
     const [isFocused, setIsFocused] = useState(false)
 
@@ -12,11 +12,13 @@ const Input = ({autoCapitalize, value,onType,isSecure,placeholder, onBlur}) => {
                 autoCapitalize={autoCapitalize}
                 value={value}
                 style={[
+                    {fontSize:fontSize},
                     styles.input,
                     isFocused && { borderColor: '#128019' },
                 ]}
                 placeholder={placeholder}
                 placeholderTextColor="#888383"
+                keyboardType={keyboradType}
                 onChangeText={onType}
                 secureTextEntry={isSecure}
                 onFocus={()=>setIsFocused(true)}

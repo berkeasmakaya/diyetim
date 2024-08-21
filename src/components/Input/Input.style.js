@@ -12,7 +12,7 @@ export default StyleSheet.create({
         borderWidth:3,
         borderRadius:10,
         borderColor:"#aca4a4",
-        padding:10,
+        padding:10,      
     }
 })
     

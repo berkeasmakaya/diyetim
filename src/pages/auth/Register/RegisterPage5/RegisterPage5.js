@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
-import {Text, View} from 'react-native';
+import {Alert, Text, View} from 'react-native';
 import styles from './RegisterPage5.style';
 import EventButton from '../../../../components/EventButton';
 import FloatingButton from '../../../../components/FloatingButton';
+import { useDispatch } from 'react-redux';
+import { setEvent } from '../../../../redux/infoSlice';
+import * as Yup from 'yup';
 
 const header1 = 'Aktivite Yok';
 const header2 = 'Az Aktif';
@@ -18,13 +21,32 @@ const content3 =
 const content4 =
   'Günlük aktiviteler yoğun fiziksel çaba gerektirmektedir. Örneğin inşaat veya ağır egzersiz.';
 
-function RegisterPage5() {
+function RegisterPage5({navigation}) {
 
-  const [event, setEvent] = useState(null);
-  const onPress = event => {
-    console.log(event)
-    setEvent(event);
+  const [userEvent, setUserEvent] = useState(null);
+  const onPress = userEvent => {
+    setUserEvent(userEvent);
   };
+  const validationSchema = Yup.object().shape({
+    event: Yup.string().required(
+      'Lütfen bir tanesini seçiniz.',
+    ),
+  });
+  const dispatch = useDispatch();
+  const goToRegisterPage6 = async () => {
+    try {
+      await validationSchema.validate({event:userEvent})
+      dispatch(setEvent(userEvent));
+      navigation.navigate("RegisterPage6")
+    } catch (error) {
+        Alert.alert("Diyetim",error.message,[
+          {
+            text:"Tamam"
+          }
+        ])
+    }
+    
+  }
 
   return (
     <View style={styles.container}>
@@ -35,34 +57,32 @@ function RegisterPage5() {
         <EventButton 
             header={header1} 
             content={content1} 
-            onPress={() => onPress('no_activity')}
-            theme={event==="no_activity" ? "secondary": "primary"}
+            onPress={() => onPress('aktivite yok')}
+            theme={userEvent==="aktivite yok'" ? "secondary": "primary"}
         />
         <EventButton 
             header={header2} 
             content={content2} 
             
-            onPress={() => onPress('little_activity')}
-            theme={event==="little_activity" ? "secondary": "primary"}
+            onPress={() => onPress('az aktif')}
+            theme={userEvent==="az aktif" ? "secondary": "primary"}
         />
         <EventButton 
             header={header3} 
             content={content3} 
-            
-            onPress={() => onPress('normal_activity')}
-            theme={event==="normal_activity" ? "secondary": "primary"}
+            onPress={() => onPress('aktif')}
+            theme={userEvent==="aktif" ? "secondary": "primary"}
         />
         <EventButton 
             header={header4} 
             content={content4} 
-            
-            onPress={() => onPress('more_activity')}
-            theme={event==="more_activity" ? "secondary": "primary"} 
+            onPress={() => onPress('çok aktif')}
+            theme={userEvent==="çok aktif" ? "secondary": "primary"} 
         />
       </View>
 
       <View style={styles.btn_container}>
-        <FloatingButton icon="arrow-right" />
+        <FloatingButton icon="arrow-right" onPress={goToRegisterPage6}/>
       </View>
     </View>
   );

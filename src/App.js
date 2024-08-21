@@ -2,14 +2,18 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
+import { Provider, useSelector } from 'react-redux';
+import { store } from './redux/store';
 import FirstPage from './pages/FirstPage';
 import RegisterPage1 from './pages/auth/Register/RegisterPage1';
 import RegisterPage2 from './pages/auth/Register/RegisterPage2';
 import RegisterPage3 from './pages/auth/Register/RegisterPage3';
 import RegisterPage4 from './pages/auth/Register/RegisterPage4';
 import RegisterPage5 from './pages/auth/Register/RegisterPage5';
-import { Provider, useSelector } from 'react-redux';
-import { store } from './redux/store';
+import RegisterPage6 from './pages/auth/Register/RegisterPage6';
+import RegisterPage7 from './pages/auth/Register/RegisterPage7';
+import RegisterPage8 from './pages/auth/Register/RegisterPage8';
+
 
 
 const Stack = createNativeStackNavigator();
@@ -19,7 +23,7 @@ const Tab = createBottomTabNavigator();
 const AuthStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen
+      {/* <Stack.Screen
         name="FirstPage"
         component={FirstPage}
         options={{headerShown: false}}
@@ -47,6 +51,21 @@ const AuthStack = () => {
       <Stack.Screen
         name="RegisterPage5"
         component={RegisterPage5}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="RegisterPage6"
+        component={RegisterPage6}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="RegisterPage7"
+        component={RegisterPage7}
+        options={{headerShown: false}}
+      /> */}
+      <Stack.Screen
+        name="RegisterPage8"
+        component={RegisterPage8}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
