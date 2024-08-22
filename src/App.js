@@ -5,68 +5,98 @@ import {NavigationContainer} from '@react-navigation/native';
 import { Provider, useSelector } from 'react-redux';
 import { store } from './redux/store';
 import FirstPage from './pages/FirstPage';
-import RegisterPage1 from './pages/auth/Register/RegisterPage1';
-import RegisterPage2 from './pages/auth/Register/RegisterPage2';
-import RegisterPage3 from './pages/auth/Register/RegisterPage3';
-import RegisterPage4 from './pages/auth/Register/RegisterPage4';
-import RegisterPage5 from './pages/auth/Register/RegisterPage5';
-import RegisterPage6 from './pages/auth/Register/RegisterPage6';
-import RegisterPage7 from './pages/auth/Register/RegisterPage7';
-import RegisterPage8 from './pages/auth/Register/RegisterPage8';
+
+
+import InfoPage1 from './pages/InfoPages/InfoPage1';
+import InfoPage2 from './pages/InfoPages/InfoPage2';
+import InfoPage3 from './pages/InfoPages/InfoPage3';
+import InfoPage4 from './pages/InfoPages/InfoPage4';
+import InfoPage5 from './pages/InfoPages/InfoPage5';
+import InfoPage6 from './pages/InfoPages/InfoPage6';
+import InfoPage7 from './pages/InfoPages/InfoPage7';
+import InfoPage8 from './pages/InfoPages/InfoPage8';
+import RegisterPage from './pages/auth/Register/RegisterPage';
+import LoginPage from './pages/auth/Login/LoginPage';
 
 
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
+const InfoStack =() => {
+  return(
+    <Stack.Navigator>
+        <Stack.Screen
+        name="InfoPage1"
+        component={InfoPage1}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="InfoPage2"
+        component={InfoPage2}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="InfoPage3"
+        component={InfoPage3}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="InfoPage4"
+        component={InfoPage4}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="InfoPage5"
+        component={InfoPage5}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="InfoPage6"
+        component={InfoPage6}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="InfoPage7"
+        component={InfoPage7}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="InfoPage8"
+        component={InfoPage8}
+        options={{headerShown: false}}
+      />
+    </Stack.Navigator>
+  )
+}
 
 const AuthStack = () => {
+  return(
+    <Stack.Navigator>
+      <Stack.Screen name='RegisterPage' component={RegisterPage} options={{headerShown:false}}/>
+      <Stack.Screen name='LoginPage' component={LoginPage} options={{headerShown:false}}/>
+    </Stack.Navigator>
+  )
+}
+
+
+const AppAuthStack = () => {
   return (
     <Stack.Navigator>
-      {/* <Stack.Screen
+      <Stack.Screen
         name="FirstPage"
         component={FirstPage}
         options={{headerShown: false}}
       />
-      <Stack.Screen
-        name="RegisterPage1"
-        component={RegisterPage1}
-        options={{headerShown: false}}
+      <Stack.Screen 
+        name='InfoStack'
+        component={InfoStack}
+        options={{headerShown:false}}
       />
-      <Stack.Screen
-        name="RegisterPage2"
-        component={RegisterPage2}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="RegisterPage3"
-        component={RegisterPage3}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="RegisterPage4"
-        component={RegisterPage4}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="RegisterPage5"
-        component={RegisterPage5}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="RegisterPage6"
-        component={RegisterPage6}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="RegisterPage7"
-        component={RegisterPage7}
-        options={{headerShown: false}}
-      /> */}
-      <Stack.Screen
-        name="RegisterPage8"
-        component={RegisterPage8}
-        options={{headerShown: false}}
+      <Stack.Screen 
+        name='AuthStack'
+        component={AuthStack}
+        options={{headerShown:false}}
       />
     </Stack.Navigator>
     
@@ -82,8 +112,8 @@ const MainApp = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="AuthStack"
-          component={AuthStack}
+          name="AppAuthStack"
+          component={AppAuthStack}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
