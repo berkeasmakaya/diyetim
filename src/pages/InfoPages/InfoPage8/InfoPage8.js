@@ -6,27 +6,34 @@ import styles from './InfoPage8.style';
 import Button from '../../../components/Button';
 import color from "../../../styles/color";
 import { format } from 'date-fns';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setBirthday } from '../../../redux/infoSlice';
 import AuthModal from '../../../components/modal/Auth/AuthModal';
-import LoginPage from '../../auth/Login/LoginPage';
-import { Screen } from 'react-native-screens';
 
 
 function InfoPage8({navigation}) {
     const [date, setDate] = useState(new Date())
     const [open, setOpen] = useState(false)
     const [isModalVisible, setIsModalVisible] = useState(false)
+    const [birthDayControl, setBirthDayControl] = useState(false)
     
     const dispatch = useDispatch();
+    
 
-    const handleSaveDate = (date) => {
+    const handleSaveDate =  (date) => {
         const formattedDate = format(date, "dd/MM/yyyy")
         dispatch(setBirthday(formattedDate))
+        if (!birthDayControl) {
+            
+            Alert.alert("Diyetim", "Lütfen doğum gününüzü giriniz!")
+        }
     }
 
     const toggleModal = () => {
-        setIsModalVisible(!isModalVisible)
+        if(birthDayControl){
+            setIsModalVisible(!isModalVisible)
+        }
+        
     }
 
     const goToRegisterPage = () =>{
@@ -51,6 +58,7 @@ function InfoPage8({navigation}) {
                     onConfirm={(selectedDate)=>{
                         setOpen(false)
                         setDate(selectedDate)
+                        setBirthDayControl(true)
                         Alert.alert("Diyetim", "Doğum Gününüz Kaydedildi!",[{text:"Tamam"}])
                     }}
                     onCancel={()=>{

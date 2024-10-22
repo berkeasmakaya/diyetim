@@ -24,7 +24,6 @@ function InfoPage7({navigation}) {
 
   const handleFormSubmit = values => {
     dispatch(setHeight(values.height));
-    console.log(values.height)
     navigation.navigate("InfoPage8");
   };
 
@@ -45,8 +44,7 @@ function InfoPage7({navigation}) {
                 onType={handleChange('height')}
                 onBlur={handleBlur('height')}
                 keyboradType="numeric"
-                placeholder="boyunuzu giriniz"
-                fontSize={25}
+                
               />
             </View>
             <Text style={styles.info}>

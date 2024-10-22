@@ -1,22 +1,18 @@
-import { Dimensions, StyleSheet } from "react-native";
+import {StyleSheet } from "react-native";
 import color from "../../../styles/color";
-
-
-const deviceSize = Dimensions.get("window")
 
 export default StyleSheet.create({
     container:{
         flex:1,
         backgroundColor:color.themeColor,
-    },
-    logo_container:{
-        
+        justifyContent:"center"
     },
     input_container:{
-        
+        marginVertical:10,
     },
     buton_container:{
-        
+        marginVertical:20,
+        paddingBottom:45,
     },
     error:{
         fontSize:15,

@@ -4,7 +4,7 @@ const deviceSize = Dimensions.get("window");
 
 export default StyleSheet.create({
     container:{
-        height:deviceSize.height/3,
+        height:deviceSize.height/4,
         width:deviceSize.width,
         justifyContent:"center",
         alignItems:"center",

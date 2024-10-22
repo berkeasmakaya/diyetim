@@ -44,8 +44,6 @@ function InfoPage6({navigation}) {
                 onType={handleChange('weight')}
                 onBlur={handleBlur('weight')}
                 keyboradType="numeric"
-                placeholder="kilonuzu giriniz"
-                fontSize={25}
               />
             </View>
             <Text style={styles.info}>

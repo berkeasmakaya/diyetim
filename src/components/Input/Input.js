@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { TextInput, View } from "react-native";
 import styles from './Input.style';
 
-const Input = ({autoCapitalize, value,onType,isSecure,placeholder, onBlur, keyboradType, fontSize}) => {
+const Input = ({autoCapitalize, value,onType,isSecure,placeholder, onBlur, keyboradType, fontSize, onSubmitEditing, returnKeyType}) => {
 
     const [isFocused, setIsFocused] = useState(false)
 
@@ -26,6 +26,8 @@ const Input = ({autoCapitalize, value,onType,isSecure,placeholder, onBlur, keybo
                     setIsFocused(false)
                     onBlur 
                 }}
+                onSubmitEditing={onSubmitEditing}
+                returnKeyType={returnKeyType}
             />
         </View>
     )

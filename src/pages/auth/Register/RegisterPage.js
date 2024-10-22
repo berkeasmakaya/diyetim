@@ -6,6 +6,8 @@ import Input from '../../../components/Input';
 import {Formik} from 'formik';
 import Button from '../../../components/Button';
 import * as Yup from 'yup';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore'
 
 const initalFormValues = {
   usermail: '',
@@ -25,11 +27,33 @@ const validationSchema = Yup.object().shape({
     .required('Şifre Onayı Zorunludur!'),
 });
 
-const handleFormSubmit = values => {
-  console.log(values);
-};
 
-const RegisterPage = () => {
+
+const RegisterPage = ({navigation}) => {
+
+  const handleFormSubmit = async values => {
+    try {
+      const userCredential = await auth().createUserWithEmailAndPassword(
+        values.usermail,
+        values.password,
+      );
+
+      const user = userCredential.user;
+
+      await firestore().collection('users').doc(user.uid).set({
+        email:user.email,
+        createdAt: firestore.FieldValue.serverTimestamp(),
+        mealPlans:{},
+      });
+
+      navigation.navigate("AppStack")
+
+    } catch (error) {
+      console.log("Kayıt sırasında hata oluştu: ", error)
+    }
+    
+  };
+
   return (
     <Formik
       initialValues={initalFormValues}
@@ -38,47 +62,45 @@ const RegisterPage = () => {
       {({values, handleChange, handleBlur, handleSubmit, touched, errors}) => (
         <>
           <View style={styles.container}>
-            <View style={styles.logo_container}>
-              <Logo />
-            </View>
-            <View style={styles.input_container}>
-              <Input
-                value={values}
-                placeholder="E-mailinizi giriniz"
-                onType={handleChange('usermail')}
-                onBlur={handleBlur('usermail')}
-                keyboradType="email-address"
-                autoCapitalize="none"
-              />
-              {touched.usermail && errors.usermail && (
-                <Text style={styles.error}>{errors.usermail}</Text>
-              )}
-              <Input
-                value={values}
-                placeholder="Şifrenizi giriniz"
-                isSecure
-                onType={handleChange('password')}
-                onBlur={handleBlur('password')}
-                autoCapitalize="none"
-              />
-              {touched.password && errors.password && (
-                <Text style={styles.error}>{errors.password}</Text>
-              )}
-              <Input
-                value={values}
-                placeholder="Şifrenizi tekrar giriniz"
-                isSecure
-                onType={handleChange('repassword')}
-                onBlur={handleBlur('repassword')}
-                autoCapitalize="none"
-              />
-              {touched.repassword && errors.repassword && (
-                <Text style={styles.error}>{errors.repassword}</Text>
-              )}
-            </View>
-            <View style={styles.buton_container}>
-              <Button text="Kayıt Ol" onPress={handleSubmit} />
-            </View>
+            <Logo />
+              <View style={styles.input_container}>
+                <Input
+                  value={values}
+                  placeholder="E-mailinizi giriniz"
+                  onType={handleChange('usermail')}
+                  onBlur={handleBlur('usermail')}
+                  keyboradType="email-address"
+                  autoCapitalize="none"
+                />
+                {touched.usermail && errors.usermail && (
+                  <Text style={styles.error}>{errors.usermail}</Text>
+                )}
+                <Input
+                  value={values}
+                  placeholder="Şifrenizi giriniz"
+                  isSecure
+                  onType={handleChange('password')}
+                  onBlur={handleBlur('password')}
+                  autoCapitalize="none"
+                />
+                {touched.password && errors.password && (
+                  <Text style={styles.error}>{errors.password}</Text>
+                )}
+                <Input
+                  value={values}
+                  placeholder="Şifrenizi tekrar giriniz"
+                  isSecure
+                  onType={handleChange('repassword')}
+                  onBlur={handleBlur('repassword')}
+                  autoCapitalize="none"
+                />
+                {touched.repassword && errors.repassword && (
+                  <Text style={styles.error}>{errors.repassword}</Text>
+                )}
+              </View>
+              <View style={styles.buton_container}>
+                <Button text="Kayıt Ol" onPress={handleSubmit} />
+              </View>
           </View>
         </>
       )}
