@@ -4,10 +4,10 @@ import styles from './FoodDetailPage.style';
 import FoodDetailCard from '../../components/FoodDetailCard';
 
 function FoodDetailPage({route}) {
-  const {item, selectedDate} = route.params;
+  const {item, selectedDate, mealType} = route.params;
   return(
     <View style={styles.container}>
-        <FoodDetailCard item={item} selectedDate={selectedDate}/>
+        <FoodDetailCard item={item} selectedDate={selectedDate} mealType={mealType}/>
     </View>
     
   )

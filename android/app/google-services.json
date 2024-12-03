@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "396084882910",
-    "project_id": "diyetim-aa3cb",
-    "storage_bucket": "diyetim-aa3cb.appspot.com"
+    "project_number": "918227504678",
+    "project_id": "diyetimm-ea44a",
+    "storage_bucket": "diyetimm-ea44a.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:396084882910:android:d41eb48372ac02a94e814f",
+        "mobilesdk_app_id": "1:918227504678:android:133d2a40e301295120e0e7",
         "android_client_info": {
           "package_name": "com.diyetim"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCdi-Cat2Gqg3zgZ3mr6VBo-FmY-lOJsHU"
+          "current_key": "AIzaSyC8Suf23p1WUb4uPNLAKXQQYixamqSX6tQ"
         }
       ],
       "services": {

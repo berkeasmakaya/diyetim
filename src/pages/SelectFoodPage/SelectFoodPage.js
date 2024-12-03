@@ -12,6 +12,7 @@ function SelectFoodPage({navigation, route}) {
   const [query, setQuery] = useState('');
   const {loading, data, error} = useFetch(query);
   const {selectedDate} = route.params
+  const {mealType} = route.params
   const formattedDate = format(selectedDate, "dd/MM/yyyy")
   
   const initalValue = {
@@ -26,7 +27,7 @@ function SelectFoodPage({navigation, route}) {
     setQuery(values.food);
   };
   const handleGoDetailPage = (item) => {
-    navigation.navigate('FoodDetailPage', {item, selectedDate});
+    navigation.navigate('FoodDetailPage', {item, selectedDate, mealType});
   }
 
   const renderFood = ({item}) => {

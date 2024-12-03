@@ -6,7 +6,7 @@ import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore';
 import { format } from "date-fns";
 
-const FoodDetailCard = ({item, selectedDate}) => {
+const FoodDetailCard = ({item, selectedDate, mealType}) => {
 
   const foodDetail = {
     "foodName": item.food.label,
@@ -27,12 +27,13 @@ const FoodDetailCard = ({item, selectedDate}) => {
 
       await userRef.set({
         mealPlans:{
-          [formattedDate] : firestore.FieldValue.arrayUnion(foodDetail)
-        }
+          [formattedDate]:{
+            [mealType] : firestore.FieldValue.arrayUnion(foodDetail)
+          }
+        } 
       }, {merge:true})
 
       Alert.alert("Diyetim", "Yemek Kaydedildi!")
-
     } catch (error) {
       console.log("Yemek kaydetme sırasında hata oluştu", error)
     }

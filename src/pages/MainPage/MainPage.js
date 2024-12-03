@@ -12,12 +12,12 @@ const MainPage = ({navigation}) => {
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState(new Date())
   
-  const handleGoSelectMealPage = () => {
-    navigation.navigate("SelectFoodPage", {selectedDate: date.toISOString()})
+  const handleGoSelectFoodPage = (mealType) => {
+    navigation.navigate("SelectFoodPage", {selectedDate: date.toISOString(), mealType})
   }
 
-  const handleGoMealDetailPage = () => {
-    navigation.navigate("MealDetailPage", {selectedDate: date.toISOString()})
+  const handleGoMealDetailPage = (mealType) => {
+    navigation.navigate("MealDetailPage", {selectedDate: date.toISOString(), mealType})
   }
   return (
     <View style={styles.container}>
@@ -43,10 +43,10 @@ const MainPage = ({navigation}) => {
           />
       </>
       <View>
-        <MealCard text="Kahvaltı" onPressCard={handleGoMealDetailPage} onPressPlus={handleGoSelectMealPage}/>
-        <MealCard text="Ara Öğün" onPressCard={handleGoMealDetailPage} onPressPlus={handleGoSelectMealPage}/>
-        <MealCard text="Öğlen" onPressCard={handleGoMealDetailPage} onPressPlus={handleGoSelectMealPage}/>
-        <MealCard text="Akşam" onPressCard={handleGoMealDetailPage} onPressPlus={handleGoSelectMealPage}/>
+        <MealCard mealType="Kahvaltı" onPressCard={()=>handleGoMealDetailPage("Kahvaltı")} onPressPlus={()=>handleGoSelectFoodPage("Kahvaltı")}/>
+        <MealCard mealType="Ara Öğün" onPressCard={()=>handleGoMealDetailPage("Ara Öğün")} onPressPlus={()=>handleGoSelectFoodPage("Ara Öğün")}/>
+        <MealCard mealType="Öğlen" onPressCard={()=>handleGoMealDetailPage("Öğlen")} onPressPlus={()=>handleGoSelectFoodPage("Öğlen")}/>
+        <MealCard mealType="Akşam" onPressCard={()=>handleGoMealDetailPage("Akşam")} onPressPlus={()=>handleGoSelectFoodPage("Akşam")}/>
       </View>
         
       {/*  */}
